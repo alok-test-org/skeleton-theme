@@ -4,8 +4,6 @@
     "grid_item": "Grid item",
   },
   "labels": {
-    "collection": "Collection",
-    "collections": "Collections",
     "corner_radius": "Corner radius",
   }
 }
