@@ -1,0 +1,65 @@
+{% doc %}
+  Renders a grid item with an image, title, and other properties.
+
+  @typedef {object} grid_item
+  @property {string} url - The URL where the item links to
+  @property {string} title - The title text to display for the item
+  @property {string} [description] - Optional description text for the item
+  @property {image} [featured_image] - Optional image to display for the item
+  @property {money} [price] - Optional price to display for the item
+
+  @param {object} item - the item to be rendered in the grid
+
+  @example
+  {% content_for 'block', id: 'grid-item', type: '_grid-item', item: collections.first %}
+{% enddoc %}
+
+<a
+  class="grid__item"
+  style="--corner-radius: {{ block.settings.corner_radius }}px"
+  href="{{ item.url }}"
+>
+  {% if item.featured_image %}
+    {% render 'image', image: item.featured_image, width: 600, height: 600, crop: 'center' %}
+  {% endif %}
+
+  <div>
+    <p>{{ item.title | escape | link_to: item.url }}</p>
+
+    {% if item.description %}
+      <p>{{ item.description | strip_html | truncatewords: 15 }}</p>
+    {% endif %}
+
+    {% if item.price %}
+      <p>{{ item.price | money }}</p>
+    {% endif -%}
+  </div>
+  1
+</a>
+
+{% stylesheet %}
+  .grid__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--corner-radius);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.grid_item",
+  "settings": [
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "t:labels.corner_radius",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1
+    }
+  ]
+}
+{% endschema %}
