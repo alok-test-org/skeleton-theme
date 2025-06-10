@@ -1,9 +1,0 @@
-{
-  "general": {
-    "grid": "Grid",
-    "grid_item": "Grid item",
-  },
-  "labels": {
-    "corner_radius": "Corner radius",
-  }
-}
