@@ -7,6 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Theme Check
-        uses: shopify/theme-check-action@andershagbard/fix-annotations
+        uses: andershagbard/theme-check-action@fix-annotations
         with:
           token: ${{ github.token }}
