@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Theme Check
-        uses: andershagbard/theme-check-action@fix-annotations
+        uses: alok-test-org/theme-check-action@main
         with:
           token: ${{ github.token }}
           theme_root: ./theme
