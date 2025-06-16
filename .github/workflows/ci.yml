@@ -10,4 +10,3 @@ jobs:
         uses: andershagbard/theme-check-action@fix-annotations
         with:
           token: ${{ github.token }}
-          theme_root: ./theme
