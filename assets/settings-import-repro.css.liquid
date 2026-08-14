@@ -1,0 +1,64 @@
+:root {
+  --repro-generation-marker: {{ settings.repro_generation_marker | json }};
+  --repro-page-background: {{ settings.repro_page_background }};
+  --repro-panel-background: {{ settings.repro_panel_background }};
+  --repro-text-color: {{ settings.repro_text_color }};
+  --repro-button-radius: {{ settings.repro_button_radius }}px;
+}
+
+.settings-repro {
+  width: min(760px, calc(100% - 32px));
+  margin: 48px auto;
+  color: var(--repro-text-color);
+}
+
+.settings-repro__panel {
+  padding: 32px;
+  border-radius: var(--repro-button-radius);
+  background: var(--repro-panel-background);
+  color: #ffffff;
+}
+
+.settings-repro__readout {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid currentColor;
+  border-radius: var(--repro-button-radius);
+  background: var(--repro-page-background);
+  color: var(--repro-text-color);
+}
+
+.settings-repro__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.settings-repro__value {
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.settings-repro__status {
+  margin-top: 20px;
+  padding: 16px 20px;
+  border-radius: var(--repro-button-radius);
+  background: #111827;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.settings-repro__status[data-state="reproduced"] {
+  background: #b91c1c;
+}
+
+.settings-repro__status[data-state="correct"] {
+  background: #166534;
+}
+
+.settings-repro__status[data-state="missing-settings"] {
+  background: #92400e;
+}

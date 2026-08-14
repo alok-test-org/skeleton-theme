@@ -8,5 +8,11 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "repro_generation_marker": "SETTINGS_DATA CURRENT - CORRECT CSS",
+    "repro_page_background": "#ffffff",
+    "repro_panel_background": "#15803d",
+    "repro_text_color": "#111827",
+    "repro_button_radius": 5
+  }
 }

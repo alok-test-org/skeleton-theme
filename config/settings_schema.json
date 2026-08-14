@@ -79,5 +79,48 @@
         "default": 4
       }
     ]
+  },
+  {
+    "name": "Import regeneration test",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Generated CSS diagnostic"
+      },
+      {
+        "type": "text",
+        "id": "repro_generation_marker",
+        "label": "Generation marker",
+        "default": "SCHEMA DEFAULT - STALE CSS"
+      },
+      {
+        "type": "color",
+        "id": "repro_page_background",
+        "label": "Page background",
+        "default": "#bcbcbc"
+      },
+      {
+        "type": "color",
+        "id": "repro_panel_background",
+        "label": "Panel background",
+        "default": "#6b7280"
+      },
+      {
+        "type": "color",
+        "id": "repro_text_color",
+        "label": "Text color",
+        "default": "#111827"
+      },
+      {
+        "type": "range",
+        "id": "repro_button_radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Button radius",
+        "default": 15
+      }
+    ]
   }
 ]

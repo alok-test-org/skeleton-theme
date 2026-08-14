@@ -6,6 +6,7 @@
 
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'settings-import-repro.css' | asset_url | stylesheet_tag }}
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
@@ -13,11 +14,45 @@
     {{ content_for_header }}
   </head>
 
-  <body>
+  <body data-repro-live-marker="{{ settings.repro_generation_marker | escape }}">
     {% sections 'header-group' %}
 
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
+
+    <script>
+      (() => {
+        const expectedMarker = 'SETTINGS_DATA CURRENT - CORRECT CSS';
+        const defaultMarker = 'SCHEMA DEFAULT - STALE CSS';
+        const liveMarker = document.body.dataset.reproLiveMarker;
+        const compiledMarker = getComputedStyle(document.documentElement)
+          .getPropertyValue('--repro-generation-marker')
+          .trim()
+          .replace(/^['"]|['"]$/g, '');
+
+        const liveOutput = document.querySelector('[data-repro-live-value]');
+        const compiledOutput = document.querySelector('[data-repro-compiled-value]');
+        const status = document.querySelector('[data-repro-status]');
+        if (!liveOutput || !compiledOutput || !status) return;
+
+        liveOutput.textContent = liveMarker || '(empty)';
+        compiledOutput.textContent = compiledMarker || '(empty)';
+
+        if (liveMarker === expectedMarker && compiledMarker === defaultMarker) {
+          status.dataset.state = 'reproduced';
+          status.textContent = 'REPRODUCED: settings_data is current, but generated CSS is stale.';
+        } else if (liveMarker === expectedMarker && compiledMarker === expectedMarker) {
+          status.dataset.state = 'correct';
+          status.textContent = 'CORRECT: settings_data and generated CSS match.';
+        } else if (liveMarker === defaultMarker && compiledMarker === defaultMarker) {
+          status.dataset.state = 'missing-settings';
+          status.textContent = 'DIFFERENT ISSUE: settings_data was not applied; both values are defaults.';
+        } else {
+          status.dataset.state = 'unknown';
+          status.textContent = 'UNEXPECTED STATE: inspect the two marker values.';
+        }
+      })();
+    </script>
   </body>
 </html>

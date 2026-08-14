@@ -1,0 +1,34 @@
+<section class="settings-repro">
+  <div class="settings-repro__panel">
+    <h1>Generated CSS after GitHub import</h1>
+    <p>
+      Green and white means post-import regeneration worked. Gray means the stylesheet was compiled with schema
+      defaults.
+    </p>
+  </div>
+
+  <div class="settings-repro__readout">
+    <p>
+      <span class="settings-repro__label">Live Liquid value from settings_data.json</span>
+      <span class="settings-repro__value" data-repro-live-value>Reading…</span>
+    </p>
+    <p>
+      <span class="settings-repro__label">Value compiled into settings-import-repro.css</span>
+      <span class="settings-repro__value" data-repro-compiled-value>Reading…</span>
+    </p>
+  </div>
+
+  <div class="settings-repro__status" data-repro-status>Checking…</div>
+</section>
+
+{% schema %}
+{
+  "name": "GitHub import CSS test",
+  "settings": [],
+  "presets": [
+    {
+      "name": "GitHub import CSS test"
+    }
+  ]
+}
+{% endschema %}
