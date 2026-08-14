@@ -1,14 +1,21 @@
 # GitHub import generated-CSS reproduction
 
-This branch tests whether a Liquid stylesheet is rendered before
-`config/settings_data.json` is applied and then left stale after a GitHub theme
-import.
+This branch tests how GitHub import handles a repository containing both a
+Liquid stylesheet source and its committed compiled output:
+
+- `assets/settings-import-repro.css.liquid` uses the current values from
+  `config/settings_data.json` and should produce a green banner.
+- `assets/settings-import-repro.css` is deliberately committed with stale
+  schema-default values and produces a gray banner.
+
+The storefront loads `settings-import-repro.css`, matching the pattern used by
+the affected merchant theme.
 
 ## Test procedure
 
 1. Connect this branch as a new theme in Shopify Admin.
-2. Open the first preview without using **Reset to latest commit** and without
-   saving a file in Admin.
+2. Open the first preview immediately after import, without using **Reset to
+   latest commit** and without saving a file in Admin.
 3. Record the banner and both displayed marker values.
 4. Use **Reset to latest commit** or save a theme file.
 5. Reload the preview and record whether the banner changes.
